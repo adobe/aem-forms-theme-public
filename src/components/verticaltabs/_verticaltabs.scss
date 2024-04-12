@@ -1,0 +1,69 @@
+.cmp-verticaltabs{
+    font-size: $font-m;
+    margin: $space-s;
+    position: relative;
+
+  &__label {
+    @include panel-label;
+  }  
+  
+  &__tabs-container{
+    display: flex;
+    margin-block-start: 16px;
+    @media(max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__label-container {
+    margin-block-end: $space-s;
+  }
+
+  &__tabpanel{
+    @include panel-label;
+    flex:1;
+  }
+  
+  &__tablist{
+    
+    
+    @media(min-width: 768px) {
+      width: 150px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-inline-end: $space-m;
+      border-inline-end: $border-very-light;
+    }
+    @media(max-width: 768px) {
+      @include tab-list;
+      padding-bottom: 2 * $space-xs;
+
+    }
+  }
+  &__tab {
+    cursor: pointer;
+    @media(min-width: 768px) {
+      padding-inline: $space-s 4px;
+      padding-block: $space-s;
+      margin-block-start: 8px;
+      color: $mid-gray;
+      &:hover {
+        color: $black;
+        border-inline-end: 2px solid $border-hover;
+      }
+      &--active {
+        border-inline-end: 4px solid $primary;
+        color: $primary;
+        &:hover{
+          border-inline-end: 4px solid $primary;
+        }
+      }
+    }
+    @media(max-width: 768px) {
+      @include tab;
+    }
+  }
+  
+  @include description
+}

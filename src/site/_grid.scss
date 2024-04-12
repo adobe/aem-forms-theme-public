@@ -1,0 +1,132 @@
+/*
+ * 
+ *  MIT License
+ * 
+ * © Copyright 2024 Adobe, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+/* grid component */
+.aem-Grid {
+  display: block;
+  inline-size: 100%;
+}
+
+.aem-Grid::before,
+.aem-Grid::after {
+  display: table;
+  content: ' ';
+}
+
+.aem-Grid::after {
+  clear: both;
+}
+
+/* placeholder for new components */
+.aem-Grid-newComponent {
+  clear: both;
+  margin: 0;
+}
+
+/* column of a grid */
+.aem-GridColumn {
+  clear: both;
+  box-sizing: border-box;
+}
+
+/* force showing hidden */
+.aem-GridShowHidden > .aem-Grid > .aem-GridColumn {
+  display: block !important;
+}
+
+/* force showing hidden components in unhide mode */
+.aem-GridShowHidden > .cmp-container > .aem-Grid > .aem-GridColumn {
+  display: block !important;
+}
+
+/* Generates all the rules for the grid columns up to the given amount of column */
+@mixin generate-columns($breakPoint, $columnTotal, $column: 1, $direction) {
+  @if ($column <= $columnTotal) {
+    & > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--#{$column} {
+      float: $direction;
+      clear: none;
+      inline-size: ($column * 100% / $columnTotal);
+    }
+
+    @include generate-columns($breakPoint, $columnTotal, ($column + 1), $direction);
+  }
+}
+
+/* Generates all the rules for the grid column offset up to the given amount of column */
+@mixin generate-offsets($breakPoint, $columnTotal, $column: 0) {
+  @if ($column <= $columnTotal) {
+    & > .aem-GridColumn.aem-GridColumn--offset--#{$breakPoint}--#{$column} {
+      margin-inline-start: ($column * 100% / $columnTotal);
+    }
+
+    @include generate-offsets($breakPoint, $columnTotal, ($column + 1));
+  }
+}
+
+/* Generates all the rules for the grid and columns for the given break point and total of columns */
+@mixin generate-grid-columns($breakPoint, $columnTotal, $direction) {
+  @if ($columnTotal > 0) {
+    &.aem-Grid--#{$columnTotal} {
+      @include generate-columns($breakPoint, $columnTotal, 1, $direction);
+      @include generate-offsets($breakPoint, $columnTotal);
+    }
+
+    &.aem-Grid--#{$breakPoint}--#{$columnTotal} {
+      @include generate-columns($breakPoint, $columnTotal, 1, $direction);
+      @include generate-offsets($breakPoint, $columnTotal);
+    }
+  }
+}
+
+/* Generates all the rules for the grids and columns */
+@mixin grid-loop($breakPoint, $columnTotal, $column: 1, $direction) {
+  @if ($column <= $columnTotal) {
+    @include generate-grid-columns($breakPoint, $column, $direction);
+    @include grid-loop($breakPoint, $columnTotal, ($column + 1), $direction);
+  }
+}
+
+/* API function to be called to generate a grid config */
+@mixin generate-grid($breakPoint, $columnTotal, $direction) {
+  @include grid-loop($breakPoint, $columnTotal, 1, $direction);
+
+  & > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--newline {
+    /* newline behavior */
+    display: block;
+    clear: both !important;
+  }
+
+  & > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--none {
+    /* none behavior */
+    display: block;
+    float: $direction; // Enforce the float positioning to maintain the column height and position relative to previous columns
+    clear: none !important; // Prevent the clear:both effect of another breakpoint new line
+  }
+
+  & > .aem-GridColumn.aem-GridColumn--#{$breakPoint}--hide {
+    /* hide behavior */
+    display: none;
+  }
+}

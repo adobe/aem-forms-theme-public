@@ -1,0 +1,31 @@
+.cmp-adaptiveform-pageheader {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  min-height: 80px;
+  column-gap: $space-s;
+  padding: 24px;
+  color: $mid-gray;
+  font-size: $font-m;
+  border-radius: 0;
+  word-break: break-all;
+  background-color: $common-panel-background;
+  box-sizing: border-box;
+
+  img {
+    height: $tap-height;
+    margin: 0;
+    width: auto;
+    color: white;
+    display: block;
+  }
+
+  div:last-child {
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    margin: 0;
+  }
+}

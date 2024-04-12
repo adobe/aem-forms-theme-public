@@ -1,0 +1,9 @@
+.cmp-adaptiveform-textinput {
+  @include input;
+}
+
+textarea.cmp-adaptiveform-textinput__widget {
+  @include widget;
+  height: 80px;
+  padding-top: $space-xs;
+}

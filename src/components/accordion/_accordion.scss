@@ -1,0 +1,78 @@
+.cmp-accordion {
+  @include container;
+  @include description;
+
+  &__item {
+    opacity: 1;
+  }
+
+  &__header {
+    padding: 0 0;
+    display: flex;
+  }
+
+  &__label-container {
+    margin-bottom: $space-s;
+  }
+
+  &__label {
+    @include panel-label;
+  }
+
+  &__button {
+    @include tab;
+    flex: 1;
+    border: none;
+    border-width: 2px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-inline-end: unset;
+    cursor: pointer;
+    font-weight: $font-weight-bold;
+    column-gap: $space-s;
+    border-bottom: 1px solid $translucent-gray;
+
+    &:hover {
+      color: $mid-gray;
+      background-color: $whitish-gray;
+      border-bottom: 1px solid $translucent-gray;
+    }
+
+    &--expanded {
+      color: $primary;
+      border: none;
+
+      &:hover {
+        color: $primary;
+        background-color: none;
+        border: none;
+      }
+    }
+  }
+
+  &__button &__icon {
+      display: inline-block;
+      background: url(./resources/images/chevron-down.svg) center center / cover no-repeat;
+      margin: 0;
+      height: 16px;
+      width: 16px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  .cmp-accordion__button.cmp-accordion__button--expanded &__icon {
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+  }
+
+  &__panel {
+    &--hidden {
+      display: none;
+    }
+  }
+
+  @include repeatability-buttons
+}

@@ -1,0 +1,36 @@
+//== Defaults
+html,
+body {
+  color: $mid-gray;
+  font-size: $font-m;
+  background-color: white;
+  font-family: $font-family-title;
+
+}
+
+*,*:before,*:after {
+  box-sizing: inherit;
+}
+
+.aem-Grid {
+  @include generate-grid(default, $max_col, left);
+}
+
+// Phone breakpoint
+@media (max-width: 768px) {
+  .aem-Grid {
+    @include generate-grid(phone, $max_col, left);
+  }
+}
+
+[dir="rtl"] {
+  .aem-Grid {
+    @include generate-grid(default, $max_col, right);
+  }
+  // Phone breakpoint
+  @media (max-width: 768px) {
+    .aem-Grid {
+      @include generate-grid(phone, $max_col, right);
+    }
+  }
+}

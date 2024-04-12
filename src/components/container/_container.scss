@@ -1,0 +1,27 @@
+.cmp-adaptiveform-container {
+  &__wrapper {
+    margin: 0 auto;
+    padding: 0 $space-m;
+    box-sizing: border-box;
+    width: 100%;
+    padding: $space-s;
+    padding-inline: 20%;
+    @media(max-width: 768px) {
+      padding-inline: $space-s;
+    }
+  }
+
+  &--loading {
+    background: rgb(255, 255, 255) url(./resources/images/busy-state.gif) no-repeat fixed center;
+    position: fixed;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    cursor: wait;
+    z-index: 100000;
+  }
+}

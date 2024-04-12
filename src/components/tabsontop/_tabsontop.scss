@@ -1,0 +1,25 @@
+.cmp-tabs {
+  @include container;
+
+  &__label-container {
+    margin-block-end: $space-s;
+  }
+
+  &__label {
+    @include panel-label;
+  }
+
+  @include description;
+
+  &__tablist {
+    @include tab-list;
+  }
+
+  &__tab {
+    @include tab;
+  }
+
+  &__tabpanel {
+    @include tab-panel;
+  }
+}

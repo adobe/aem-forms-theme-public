@@ -1,0 +1,68 @@
+//== Font
+
+$font-family-title: 'Public Sans','SF Pro','Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-default: 'SF Pro','Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$font-weight-normal: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 600;
+
+
+// ====== font size======
+$font-xl: 40px;
+$font-l: 24px;
+$font-m: 16px;
+$font-s: 12px;
+
+// ====== colors======
+$dark-gray: #242424;
+$gray: rgba(0,0,0,0.90);
+$mid-gray: #505050;
+$light-gray: #949494;
+$very-light-gray: #D6D6D6;
+$translucent-gray:#ddd;
+$background-color: #eee;
+$blue: #336AD3;
+$light-blue: #226BF9CC;
+$white: #fff;
+$error: #AE0D0D;
+$light-error: rgba(235, 60, 54, 0.05);
+$primary: $blue;
+$dark-primary: $mid-gray;
+$whitish-gray: #F5F5F5;
+$clicked-button: #2A2B48;
+$common-panel-background: #FAFAFA;
+$black: #000;
+$border-hover: #CCCCCC;
+$hover-secondary: #EBEBEB;
+$tab-active: #255ECC;
+$checked-border: #B8D1DF;
+
+$focus-outline: 2px $primary solid;
+$error-outline: 2px $error solid;
+$border-very-light: 2px $background-color solid;
+$border-error: 2px $error solid;
+$box-shadhow-hover: 0px 3px 12px #00000033;
+
+$border-default: 1px solid $very-light-gray;
+$border-light: 1px solid $light-gray;
+
+
+
+// ====== space ======
+$space-xs: 6px;
+$space-s: 12px;
+$space-m: 24px;
+$space-l: 48px;
+$space-xl: 144px;
+
+$field-radius: 6px;
+$button-radius: 6px;
+$tap-height: 48px;
+$standard-height: 43px;
+$button-height: 52px;
+
+
+//== Grid
+
+$max_col: 12;

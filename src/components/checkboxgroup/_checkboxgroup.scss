@@ -1,0 +1,62 @@
+.cmp-adaptiveform-checkboxgroup {
+  @include container;
+
+  &__label {
+    @include label;
+  }
+
+  &__widget {
+    @include list-container;
+  }
+
+  @include description;
+
+  &__errormessage {
+    @include error-message
+  }
+
+  &-item {
+    @include list-item;
+  }
+  
+  &-item &__label,&__option-label {
+    @include checkbox-label;
+  }
+
+  &[data-cmp-enabled=true] &-item,&[data-cmp-enabled=true] &__option-label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__option__widget {
+    height: 1rem;
+    width: 1rem;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    border-radius: 2px;
+    border: 1px solid $very-light-gray;
+    background: white;
+    &:hover:not([disabled]):not(:checked) {
+      cursor: pointer;
+      border: 1px solid $light-gray;
+      background: linear-gradient(0deg, rgba(34, 107, 249, 0.10) 0%, rgba(34, 107, 249, 0.10) 100%), #FFF;
+    }
+    &:checked {
+      background-color: $primary;
+      &::after {
+        content: '';
+        background-image: url(resources/images/check-white.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}

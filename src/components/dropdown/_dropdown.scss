@@ -1,0 +1,24 @@
+.cmp-adaptiveform-dropdown {
+  @include input;
+
+  &__widget {
+    @include widget;
+    appearance: none;
+    cursor: pointer;
+    background: url(./resources/images/chevron-down.svg);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    &::after {
+      content: '';
+      background: url(./resources/images/chevron-down.svg) center center / cover no-repeat;
+      position: relative;
+    }
+  }
+  [dir='rtl'] &__widget {
+    background-position: left 10px center;
+  }
+}
+
+.cmp-adaptiveform-dropdown__widget[multiple='multiple'] {
+  height: 80px;
+}

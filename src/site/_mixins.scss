@@ -1,0 +1,514 @@
+@mixin container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &[data-cmp-valid=false] input,
+  &[data-cmp-valid=false] textarea,
+  &[data-cmp-valid=false] select {
+    background: $light-error ;
+    border: $border-error ;
+    outline-color: $error;
+  }
+
+  &[data-cmp-valid=false]>&__shortdescription {
+    display: none;
+  }
+
+  &[data-cmp-valid=false]>&__errormessage {
+    display: flex;
+    align-items: center;
+  }
+
+  @include required-field-style;
+
+  // remove this code
+  &.cmp-tabs,
+  &.cmp-adaptiveform-wizard,
+  &.cmp-accordion {
+    margin: $space-l 0;
+  }
+
+}
+
+@mixin required-field-style {
+  &[data-cmp-required=true] &__label {
+      display: flex;
+      justify-content: flex-start;
+      column-gap: $space-xs;
+      &::after {
+        content: '*';
+        font-weight: bold;
+        color: $error;
+      }
+  }
+}
+
+@mixin label {
+  padding-inline-end: $space-m;
+  box-sizing: border-box;
+  opacity: 1;
+  color: $mid-gray;
+  padding: 0;
+  font-size: $font-m;
+  pointer-events: none;
+  z-index: 11;
+  font-weight: $font-weight-normal;
+}
+
+@mixin checkbox-label {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: $space-s;
+  width: 100%;
+}
+
+@mixin panel-label {
+  font-size: $font-l;
+  font-weight: $font-weight-bold;
+  color: $mid-gray;
+  opacity: 1;
+  margin-top: 0;
+  margin-bottom: $space-s;
+  position: static;
+}
+
+@mixin widget {
+  border-radius: 0;
+  font-size: $font-m;
+  height: $standard-height;
+  background-color: $white;
+  border: $border-default;
+  border-radius: $field-radius;
+  padding: 0 $space-s;
+  margin: $space-xs 0;
+  outline: $focus-outline;
+  outline-width: 0px;
+  box-sizing: border-box;
+  font-family: $font-family-default;
+
+  &:hover:not([disabled]) {
+    border: $border-light;
+    background: linear-gradient(0deg, rgba(34, 107, 249, 0.05) 0%, rgba(34, 107, 249, 0.05) 100%), #FFF;
+  }
+
+  &:focus:not([disabled]) {
+    background-color: white;
+    border-color: transparent;
+    outline-offset: 0;
+    outline: $focus-outline;
+    transition: outline 0.1s ease-out, border 0.1s ease-out;
+  }
+
+  &:disabled {
+    background-color: $whitish-gray;
+  }
+
+  &[readonly] {
+    background-color: $whitish-gray;
+  } 
+}
+
+@mixin long-description {
+  display: flex;
+  align-items: flex-start;
+  background-color: rgba(34, 107, 249, 0.10);
+  border-radius: $field-radius;
+  opacity: 1;
+  color: $mid-gray;
+  padding: $space-s;
+  font-size: $font-s;
+  font-weight: $font-weight-normal;
+  pointer-events: none;
+  margin: $space-xs 0;
+  column-gap: $space-s;
+
+  &::before {
+    content: '';
+    background: url(./resources/images/long-description.svg) center center / cover no-repeat;
+    height: 16px;
+    min-width: 16px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@mixin short-description {
+  display: flex;
+  position: static;
+  font-size: $font-s;
+  font-weight: $font-weight-normal;
+  color: $gray;
+  margin: 0 0 $space-s 0;
+}
+
+@mixin question-mark {
+  position: absolute;
+  display: flex;
+  top: 0;
+  inset-inline-end: 0;
+  padding: 0;
+  width: $font-m;
+  height: $font-m;
+  border-radius: 9px;
+  background: url(./resources/images/question-default.svg) center center / cover no-repeat;
+  cursor: pointer;
+  border: none;
+  color: $blue;
+
+  &:hover {
+    background: url(./resources/images/question-hover.svg) center center / cover no-repeat;
+  }
+  &:active {
+    background: url(./resources/images/question-clicked.svg) center center / cover no-repeat;
+  }
+}
+
+@mixin error-message {
+  display: none;
+  color: $error;
+  font-size: $font-s;
+  font-weight: $font-weight-semi-bold;
+  margin: 0;
+
+  &::before {
+    content: '';
+    background: url(./resources/images/error.svg) center center / cover no-repeat;
+    margin-inline-end: $space-xs;
+    height: 14px;
+    min-width: 16px;
+  }
+}
+
+// description contains the long-description, short-description, question-mark
+@mixin description {
+  &__longdescription {
+    @include long-description;
+  }
+
+  &__shortdescription {
+    @include short-description;
+  }
+
+  &__questionmark {
+    @include question-mark;
+  }
+ 
+  &__label-container {
+    display: flex;
+    justify-content: space-between;
+    &>button[class*=__questionmark] {
+      position: unset;
+      inset-inline-end: unset;
+    }
+  }
+}
+
+// input contains the container, label, widget, description, error
+@mixin input {
+  @include container;
+
+  &__label {
+    @include label;
+  }
+
+  &__widget {
+    @include widget;
+  }
+
+  @include description;
+
+  &__errormessage {
+    @include error-message
+  }
+}
+
+@mixin primary-button {
+  width: 100%;
+  display: block;
+  background: $primary;
+  border: none;
+  border-radius: $button-radius;
+  height: $button-height;
+  padding: 8px $space-m;
+  cursor: pointer;
+  color: white;
+  font-size: $font-m;
+  font-weight: $font-weight-normal;
+
+  &:hover:not([disabled]) {
+    background-color: $light-blue;
+  }
+
+  &:active:not([disabled]) {
+    background-color: $clicked-button;
+  }
+
+  &:disabled {
+    opacity: 50%;
+    cursor: default;
+  }
+
+  &[data-cmp-enabled=false] {
+    opacity: 50%;
+  }
+
+  @media (min-width: 640px) {
+    width: fit-content;
+  }
+}
+
+@mixin secondary-base-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: static;
+  align-self: flex-start;
+  border: 1px solid $light-gray;
+  border-radius: $button-radius;
+  background-color: $white;
+  vertical-align: text-bottom;
+  cursor: pointer;
+  color:$mid-gray;
+  font-size: $font-m;
+  padding: $space-s $space-m;
+  font-weight: $font-weight-normal;
+  margin: $space-s 0;
+  opacity: 1;
+  align-items: center;
+
+  @media (min-width: 640px) {
+    width: fit-content;
+  }
+}
+
+@mixin secondary-button {
+  @include secondary-base-button;
+
+  &:hover {
+    border: 1px solid $light-gray;
+    background-color: $hover-secondary;
+  }
+
+  &:active {
+    background-color: $clicked-button;
+    color: $white;
+  }
+
+  &:disabled {
+    background-color: $whitish-gray;
+    cursor: default;
+    opacity: 0.5;
+  }
+
+}
+
+// for tabs on top & wizard
+@mixin tab-list {
+  padding: 0 $space-s;
+  counter-reset: section;
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  margin-bottom: 0;
+  overflow: auto;
+}
+
+@mixin tab {
+  padding: 0;
+  background-color: transparent;
+  min-height: $tap-height;
+  line-height: 1.2;
+  color: $mid-gray;
+  margin-inline-end: $space-m;
+  font-size: $font-m;
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+  border-width: 2px;
+  white-space: nowrap;
+  font-weight: $font-weight-bold;
+
+  &:hover {
+    color: $black;
+    border-bottom-color: $border-hover;
+    border-bottom-style: solid;
+  }
+
+  &--active,&--active:hover {
+    color: $tab-active;
+    border-color: $primary;
+    border-bottom-style: solid;
+    display: flex;
+    align-items: center;
+  }
+
+  &--active::after {
+    content: '—';
+    display: none;
+    color: $primary;
+  }
+
+}
+
+@mixin tab-panel {
+  padding: $space-l;
+  background-color: $common-panel-background;
+
+  @media (max-width: 480px) {
+    padding-block: $space-l;
+    padding-inline: $space-m;
+    width: 100%;
+  }
+}
+
+// wizard tab
+@mixin wizard-tab {
+  @include tab;
+  column-gap: $space-s;
+  padding: 0;
+  border-bottom-width: 2px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: $font-m;
+  transition: flex-grow ease .3s;
+  border-radius: 0;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-color: transparent;
+  &:last-child {
+    margin: 0;
+  }
+
+  &--active {
+    transition: flex-grow ease .3s;
+    //color: $primary;
+    //border-bottom: $focus-outline;
+    background-color: transparent;
+  }
+}
+
+@mixin wizard-next-button {
+  @include primary-button;
+  margin: $space-s 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 43px;
+  position: static;
+  cursor: pointer;
+  padding-block: 8px;
+
+  &::before {
+    content: 'Next';
+    position: static;
+  }
+}
+
+@mixin wizard-previous-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: static;
+  cursor: pointer;
+  @include secondary-button;
+  height: 43px;
+  padding-block: 8px;
+
+  &::before {
+    content: 'Previous';
+    position: static;
+  }
+}
+
+@mixin list-container {
+  pointer-events: all;
+  margin: 0;
+  display: flex;
+  margin: $space-xs 0;
+
+  &.VERTICAL {
+    flex-direction: column;
+    row-gap: 0;
+  }
+
+  &.HORIZONTAL {
+    flex-direction: row;
+    column-gap: 0;
+    flex-wrap: wrap;
+  }
+}
+
+@mixin list-item {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  color: $mid-gray;
+  column-gap: $space-s;
+  position: static;
+  opacity: 1;
+  border-radius: $button-radius;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: $space-s;
+  font-size: $font-m;
+
+}
+
+@mixin repeatability-icon-default {
+  background-color: $very-light-gray;
+  width: 1.75rem;
+  border: 0;
+  height: 1.75rem;
+  border-radius: 50%;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+@mixin repeatability-buttons {
+  &__repeatable-buttons {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    gap: 5px;
+
+    .cmp-accordion__add-button {
+      background: url('./resources/images/add-button.svg') 50% 50% no-repeat;
+      @include repeatability-icon-default;
+
+      &:hover {
+        background: url('./resources/images/add-button-white.svg') 50% 50% no-repeat;
+        background-color: $primary;
+        box-shadow: $box-shadhow-hover;
+      }
+    }
+
+    .cmp-accordion__remove-button {
+      background: url('./resources/images/remove-button-black.svg') 50% 50% no-repeat;
+      @include repeatability-icon-default;
+
+      &:hover {
+        background: url('./resources/images/remove-button.svg') 50% 50% no-repeat;
+        background-color: $error;
+        box-shadow: $box-shadhow-hover;
+      }
+    }
+  }
+}
+
+div[data-cmp-is="adaptiveFormDropDown"],
+div[data-cmp-is="adaptiveFormDatePicker"],
+div[data-cmp-is="adaptiveFormNumberInput"],
+div[data-cmp-is="adaptiveFormTextInput"],
+div[data-cmp-is="adaptiveFormCheckBoxGroup"],
+div[data-cmp-is="adaptiveFormFileInput"],
+div[data-cmp-is="adaptiveFormRadioButton"] {
+  border: none;
+  margin: $space-s 0;
+}

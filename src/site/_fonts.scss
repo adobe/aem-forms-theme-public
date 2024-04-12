@@ -1,0 +1,20 @@
+
+//== Font loading
+
+@mixin fontface($name, $file, $weight: normal, $style: normal) {
+    @font-face {
+        font-weight: $weight;
+        font-family: '#{$name}';
+        font-style: $style;
+        src: url('resources/fonts/#{$file}.ttf') format('truetype');
+    }
+}
+
+@include fontface("defaultFont", 'SourceSansPro/SourceSansPro-Regular', normal);
+@include fontface("defaultFont", 'SourceSansPro/SourceSansPro-SemiBold', bold);
+@include fontface("defaultFont", 'SourceSansPro/SourceSansPro-Bold', bolder);
+@include fontface("PublicSans", 'PublicSans/PublicSans-Regular', normal);
+@include fontface("PublicSans", 'PublicSans/PublicSans-Medium', medium);
+@include fontface("PublicSans", 'PublicSans/PublicSans-SemiBold', bold);
+@include fontface("PublicSans", 'PublicSans/PublicSans-Bold', bolder);
+

@@ -1,0 +1,57 @@
+.cmp-adaptiveform-wizard {
+  @include container;
+
+  &__label-container {
+    margin-bottom: $space-s;
+  }
+
+  &__label {
+    @include panel-label;
+  }
+
+  @include description;
+
+  &__tabs-container {
+    max-width: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+
+  &__tabList {
+    @include tab-list;
+  }
+
+  &__tab {
+    @include wizard-tab;
+  }
+
+  &__wizardpanel {
+    @include tab-panel;
+  }
+
+  &__previousNav {
+    @include wizard-previous-button;
+  }
+
+  &__nextNav {
+    @include wizard-next-button;
+  }
+  &__containerNav {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    position: absolute;
+    width: 100%;
+    inset-block-end: -80px;
+  }
+
+  &__nav {
+    &--previous {
+      @include wizard-previous-button;
+      
+    }
+    &--next {
+      @include wizard-next-button;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.cmp-adaptiveform-fileinput {
+  @include input;
+
+  &__widgetlabel {
+    @include secondary-button;
+    margin: $space-xs 0;
+    display: flex;
+    column-gap: $space-xs;
+    align-items: center;
+    pointer-events: all;
+    height: 43px;
+    padding-block: 8px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url(./resources/images/file-attach.svg) center center / cover no-repeat;
+    }
+
+    &:active::before {
+      background: url(./resources/images/file-attach-white.svg) center center / cover no-repeat;
+    }
+  }
+
+  &__filelist {
+    padding: 0;
+    @include list-container;
+  }
+
+  &__fileitem {
+    @include list-item;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__fileendcontainer {
+    display: flex;
+    justify-content: space-between;
+    gap: $space-s;
+    align-items: center;
+  }
+
+  input[type="file"] {
+    column-gap: $space-l;
+  }
+
+  &__filedelete {
+    float: right;
+    font-size: $font-m;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: $font-weight-semi-bold;
+    color: $error;
+    cursor: pointer;
+  }
+  
+  [dir='rtl'] &__filedelete {
+    float: left;
+  }
+
+  br {
+    display: none;
+  }
+}
