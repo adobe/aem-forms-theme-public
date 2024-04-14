@@ -6,7 +6,7 @@ This theme can be modified to customize the visual appearance of Adaptive Form.
 
 ## Structure
 
-* `src/main.ts`: This is the main entry point of your JS & CSS theme.
+* `src/theme.ts`: This is the main entry point of your JS & CSS theme.
 * `src/site`: Files that are generic to the entire site.
 * `src/components`: Files that are specific to components.
 * `src/resources`: Associated files, like icons, logos, fonts.
