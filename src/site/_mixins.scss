@@ -308,7 +308,8 @@
 
 // for tabs on top & wizard
 @mixin tab-list {
-  padding: 0 $space-s;
+  padding-block: 0 2*$space-xs;
+  padding-inline: $space-s;
   counter-reset: section;
   display: flex;
   flex-wrap: nowrap;
