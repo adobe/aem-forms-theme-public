@@ -37,8 +37,7 @@
     }
     @media(max-width: 768px) {
       @include tab-list;
-      padding-bottom: 2 * $space-xs;
-
+      padding-inline: 0;
     }
   }
   &__tab {

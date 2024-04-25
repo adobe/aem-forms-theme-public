@@ -19,7 +19,8 @@
     @include panel-label;
   }
 
-  &__button {
+  /* Parent selector included to avoid style from being overridden in few cases*/
+  &__header &__button {
     @include tab;
     flex: 1;
     border: none;

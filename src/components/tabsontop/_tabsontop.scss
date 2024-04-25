@@ -11,11 +11,14 @@
 
   @include description;
 
-  &__tablist {
+  & &__tablist {
     @include tab-list;
+    @media(max-width: 768px) {
+      padding-inline: 0;
+    }
   }
 
-  &__tab {
+  &__tablist &__tab {
     @include tab;
   }
 

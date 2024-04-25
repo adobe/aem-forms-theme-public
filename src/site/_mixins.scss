@@ -308,7 +308,8 @@
 
 // for tabs on top & wizard
 @mixin tab-list {
-  padding: 0 $space-s;
+  padding-block: 0 2*$space-xs;
+  padding-inline: $space-s;
   counter-reset: section;
   display: flex;
   flex-wrap: nowrap;
@@ -508,7 +509,9 @@ div[data-cmp-is="adaptiveFormNumberInput"],
 div[data-cmp-is="adaptiveFormTextInput"],
 div[data-cmp-is="adaptiveFormCheckBoxGroup"],
 div[data-cmp-is="adaptiveFormFileInput"],
-div[data-cmp-is="adaptiveFormRadioButton"] {
+div[data-cmp-is="adaptiveFormRadioButton"],
+div[data-cmp-is="adaptiveFormEmailInput"],
+div[data-cmp-is="adaptiveFormTelephoneInput"] {
   border: none;
   margin: $space-s 0;
 }
