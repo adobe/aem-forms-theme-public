@@ -28,6 +28,10 @@
     padding: 0;
     @include list-container;
   }
+  // To be removed once CSS support is added for drag and drop
+  &__dragtext {
+    display: none;
+  }
 
   &__fileitem {
     @include list-item;
@@ -54,6 +58,8 @@
     font-weight: $font-weight-semi-bold;
     color: $error;
     cursor: pointer;
+    border: none;
+    background: none;
   }
   
   [dir='rtl'] &__filedelete {
