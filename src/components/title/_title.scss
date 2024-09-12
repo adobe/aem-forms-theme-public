@@ -4,4 +4,8 @@
   font-weight: $font-weight-semi-bold;
   letter-spacing: -1;
   line-height: 1.1;
+
+  @media (max-width: 640px) {
+    font-size: $font-l;
+  }
 }
