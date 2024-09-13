@@ -19,6 +19,12 @@
     @include panel-label;
   }
 
+  &__header {
+    &:hover {
+      background-color: $whitish-gray;
+    }
+  }
+
   /* Parent selector included to avoid style from being overridden in few cases*/
   &__header &__button {
     @include tab;
@@ -45,8 +51,6 @@
 
       &:hover {
         color: $primary;
-        background-color: none;
-        border: none;
       }
     }
   }
