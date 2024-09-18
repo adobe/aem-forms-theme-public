@@ -14,7 +14,7 @@
         "create-clientlib": "npm run build && npm run clientlib-generator"
     },
     "devDependencies": {
-        "@adobe/aem-site-theme-builder": "5.3.0",
+        "@aemforms/aem-site-theme-builder": "5.3.0",
         "@parcel/transformer-sass": "^2.0.1",
         "aem-clientlib-generator": "^1.8.0",
         "autoprefixer": "^10.3.7",
@@ -27,8 +27,8 @@
         "parcel": "^2.0.1",
         "parcel-namer-rewrite": "^2.0.0-rc.1",
         "path": "^0.12.7",
-        "postcss-media-minmax": "^5.0.0",
         "postcss": "^8.3.11",
+        "postcss-media-minmax": "^5.0.0",
         "rimraf": "^3.0.2",
         "typescript": "^4.5.2"
     },
