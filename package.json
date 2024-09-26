@@ -1,5 +1,5 @@
 {
-    "name": "aem-forms-public-theme",
+    "name": "@aemforms/af-public-theme",
     "version": "0.0.1",
     "description": "Standard AEM Forms Public theme",
     "license": "MIT License, Copyright 2022 Adobe Systems Incorporated",
