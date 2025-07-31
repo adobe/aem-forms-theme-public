@@ -17,7 +17,7 @@ This theme can be modified to customize the visual appearance of Adaptive Form.
 In order to make best use of theme-builder you have to run the live preview which provides proxy and browser sync functionalities. On top of that you need to make sure that you have additional watcher for your source files that triggers your theme build process which produces changes in the `dist` folder of your theme. This way after making change in your source file you will get your proxy page refreshed via browser sync.
 
 ### NodeJS Version
-This theme has been developed and tested with node version 14
+This theme has been developed and tested with node version 20.13.1.
 
 ### Build
 
