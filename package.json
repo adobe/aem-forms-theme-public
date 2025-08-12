@@ -1,6 +1,6 @@
 {
     "name": "af-public-theme",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Standard AEM Forms Public theme",
     "license": "MIT License, Copyright 2022 Adobe Systems Incorporated",
     "scripts": {
